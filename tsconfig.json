@@ -1,15 +1,37 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "strict": true,
-    "module": "commonjs",
-    "experimentalDecorators": true,
-    "noEmit": true,
-    "typeRoots": [
-      "node_modules/@types",
-      "node_modules/playwright/types"
-    ]
+      "target": "es6",
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "inlineSources": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "lib": [
+          "es6",
+          "DOM"
+      ],
+      "removeComments": true,
+      "noImplicitAny": true,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "allowSyntheticDefaultImports": true,
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "declaration": true,
+      "baseUrl": ".",
+      "paths": {
+          "*": [
+              "node_modules/*",
+              "./types/*"
+          ]
+      },
+      "typeRoots": [
+          "./node_modules/@types/",
+          "./node_modules/allure2-js-commons/dist/declarations/**/"
+      ]
   },
-  "include": ["src"]
+  "exclude": [
+      "node_modules"
+  ],
+  "compileOnSave": false
 }

@@ -1,31 +1,27 @@
-// import {expect} from "chai"
+import {step} from '../../config/jest-custom-reporter';
+
 import {BasePage} from "./BasePage"
 import {WelcomePage} from "./WelcomePage";
-import { step } from "ts-test-decorators";
 
 export class LoginPage extends BasePage {
-    url = 'https://www.facebook.com';
+  url = 'https://www.facebook.com';
 
-    emailInput = '#email';
-    passwordInput = '#pass';
-    loginButton = '[name="login"]';
+  emailInput = '#email';
+  passwordInput = '#pass';
+  loginButton = '[name="login"]';
 
-    // @step("Navigate to login page")
-    async navigateTo() {
-        this.reporter.startStep("Navigate to login page");
-        await this.page.goto(this.url);
-        await expect(this.page).toHaveText("Connect with friends and the world around you on Facebook.");
-        this.reporter.endStep();
-        return this;
-    }
-    //, password: string
-    // @step((email: string) => `Log in to facebook with email '${email}' and password '${email}'`)
-    async login(email: string, password: string) {
-        this.reporter.startStep(`Log in to facebook with email '${email}' and password '${password}'`);
-        await this.page.fill(this.emailInput, email);
-        await this.page.fill(this.passwordInput, password);
-        await this.page.click(this.loginButton);
-        this.reporter.endStep();
-        return new WelcomePage(this.page, this.reporter);
-    }
+  @step("Navigate to login page")
+  async navigateTo() {
+    await this.page.goto(this.url);
+    await expect(this.page).toHaveText("Connect with friends and the world around you on Facebook.");
+    return this;
+  }
+
+  @step(((arg: string) => `Log in to facebook with email '${arg}' and password '${arg}'`))
+  async login(email: string, password: string) {
+    await this.page.fill(this.emailInput, email);
+    await this.page.fill(this.passwordInput, password);
+    await this.page.click(this.loginButton);
+    return new WelcomePage(this.page);
+  }
 }

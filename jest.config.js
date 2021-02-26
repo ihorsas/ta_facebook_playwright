@@ -1,11 +1,28 @@
-module.exports = {
-    preset: "jest-playwright-preset",
-    testMatch: ["**/__tests__/**/*.+(ts|js)", "**/?(*.)+(spec|test).+(ts|js)"],
+import type { Config } from '@jest/types';
+
+const config: Config.InitialOptions = {
+    preset: 'ts-jest',
     transform: {
-        "^.+\\.(ts)$": "ts-jest",
+        '^.+\\.ts?$': 'ts-jest',
     },
-    testRunner : 'jasmine2',
-    testTimeout: 70000,
-    reporters: ['default', 'jest-allure'],
-    setupFilesAfterEnv: ['jest-allure/dist/setup']
+    moduleFileExtensions: ['ts', 'js', 'cjs', 'json', 'node',],
+    // globalSetup: './test/hooks.ts',
+    // globalTeardown: './teardown.js',
+    setupFilesAfterEnv: [
+        './jest-custom-reporter.ts',
+    ],
+    // setupFilesAfterEnv: ['jest-allure2-adapter/dist/setup-default',],
+    testTimeout: 25000,
+    // testEnvironmentOptions: {
+    //   jiraUrl: ""
+    // },
+    coverageThreshold: {
+        global: {
+            branches: 0,
+            functions: 0,
+            lines: 0,
+            statements: 0,
+        },
+    },
 };
+export default config;

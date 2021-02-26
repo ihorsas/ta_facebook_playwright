@@ -1,3 +1,10 @@
-# Project exclude paths
-/node_modules/
-package-lock.json
+*.js
+*.js.map
+.nyc_output
+.DS_Store
+node_modules/
+coverage
+.*.swp
+allure-report/
+allure-results/
+.env
