@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "strict": true,
+    "module": "commonjs",
+    "experimentalDecorators": true,
+    "noEmit": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "node_modules/playwright/types"
+    ]
+  },
+  "include": ["src"]
+}

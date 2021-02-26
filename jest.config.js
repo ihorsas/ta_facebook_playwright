@@ -1,7 +1,11 @@
 module.exports = {
-    verbose: true,
-    preset: 'jest-playwright-preset',
-    testRunner: "jest-circus/runner",
-    testEnvironment: "./playwright_environment.js",
-    testTimeout: 10000
-}
+    preset: "jest-playwright-preset",
+    testMatch: ["**/__tests__/**/*.+(ts|js)", "**/?(*.)+(spec|test).+(ts|js)"],
+    transform: {
+        "^.+\\.(ts)$": "ts-jest",
+    },
+    testRunner : 'jasmine2',
+    testTimeout: 70000,
+    reporters: ['default', 'jest-allure'],
+    setupFilesAfterEnv: ['jest-allure/dist/setup']
+};
